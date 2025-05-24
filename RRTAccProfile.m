@@ -158,15 +158,15 @@ end
 %% Using the controller to follow the unsmoothed path
 % Constant state profile
 if length(constantStatePath.sampleTime) > 19
-    controller_modified(constantStatePath.pos(1,:), constantStatePath.pos(2,:), EGO.psi*3.14/180, constantStatePath.vel(1), constantStatePath.vel(end), EGO.ax, EGO.ay, param)
+    utils.controller_modified(constantStatePath.pos(1,:), constantStatePath.pos(2,:), EGO.psi*3.14/180, constantStatePath.vel(1), constantStatePath.vel(end), EGO.ax, EGO.ay, param)
 end
 % Constant Velocity profile------------------------------------------------
 if length(constantVelPath.sampleTime) > 19
-    controller_modified(constantVelPath.pos(1,:), constantVelPath.pos(2,:), EGO.psi*3.14/180, constantVelPath.vel(1), constantVelPath.vel(end), EGO.ax, EGO.ay, param)
+    utils.controller_modified(constantVelPath.pos(1,:), constantVelPath.pos(2,:), EGO.psi*3.14/180, constantVelPath.vel(1), constantVelPath.vel(end), EGO.ax, EGO.ay, param)
 end
 % Braking profile----------------------------------------------------------
 if length(brakingPath.sampleTime) > 19
-    controller_modified(brakingPath.pos(1,:), brakingPath.pos(2,:), EGO.psi*3.14/180, brakingPath.vel(1), brakingPath.vel(end), EGO.ax, EGO.ay, param)
+    utils.controller_modified(brakingPath.pos(1,:), brakingPath.pos(2,:), EGO.psi*3.14/180, brakingPath.vel(1), brakingPath.vel(end), EGO.ax, EGO.ay, param)
 end
 
 %% Choosing the safest path
@@ -283,7 +283,7 @@ while iter <= param.maxIter
     end
     
     % Find a path from the selected nearest vertex to the chosen random vertex
-    [col, p_step, p_pos_step, p_angle, p_vel, p_prob] = InCollision_Edge(p_pos, p_pos_rand, min_l_angle, min_p_angle, min_p_vel, min_angle_diff, gridConverted, EGO, param, sampleTime);
+    [col, p_step, p_pos_step, p_angle, p_vel, p_prob] = utils.InCollision_Edge(p_pos, p_pos_rand, min_l_angle, min_p_angle, min_p_vel, min_angle_diff, gridConverted, EGO, param, sampleTime);
     
     % Skip to next iteration if it is not valid edge
     if col == 1

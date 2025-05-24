@@ -156,7 +156,7 @@ else
 end
 %% Controller for following the path
 tic
-controller_modified(P_pos(1,:), P_pos(2,:), EGO.psi*3.14/180, EGO.vel, EGO.vel, EGO.ax, EGO.ay, param)
+utils.controller_modified(P_pos(1,:), P_pos(2,:), EGO.psi*3.14/180, EGO.vel, EGO.vel, EGO.ax, EGO.ay, param)
 toc
 %% Additional functions
 % Function - Path planning-------------------------------------------------
@@ -241,7 +241,7 @@ while iter <= param.maxIter
     end
     
     % Find a path from the selected nearest vertex to chosen random vertex
-    [col, p_step, p_pos_step, p_angle] = InCollision_Edge(p_pos,...
+    [col, p_step, p_pos_step, p_angle] = utils.InCollision_Edge(p_pos,...
         p_pos_rand, l_angle, gridConverted, EGO, param, sampleTime);
     
     % Skip to next iteration if it is not valid edge
